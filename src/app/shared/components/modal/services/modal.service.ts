@@ -1,3 +1,4 @@
+import { BodyInjectorService } from './../../../services/body-injector';
 import { ModalComponent } from './../modal.component';
 import {
   ComponentFactory,
@@ -14,7 +15,8 @@ export class ModalService {
 
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector
+    private injector: Injector,
+    private bodyInjector: BodyInjectorService
   ) {
     this.componentFactory =
       componentFactoryResolver.resolveComponentFactory(ModalComponent);
@@ -23,16 +25,17 @@ export class ModalService {
   public open(config: ModalConfig): ModalRef {
     const componentRef = this.createComponentRef();
     componentRef.instance.config = config;
+    console.log(componentRef.instance);
     console.log('open called');
+    this.bodyInjector.stackBeforeAppRoot(componentRef);
     return new ModalRef(componentRef);
   }
-  private createComponentRef():ComponentRef<ModalComponent>{
+  private createComponentRef(): ComponentRef<ModalComponent> {
     return this.componentFactory.create(this.injector);
   }
 }
 export class ModalRef {
-
-  constructor(private componentRef:ComponentRef<ModalComponent>){}
+  constructor(private componentRef: ComponentRef<ModalComponent>) {}
 
   public close(): void {
     console.log('close called');
