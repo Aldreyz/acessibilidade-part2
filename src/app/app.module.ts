@@ -1,14 +1,22 @@
-import { ModalModule } from './shared/components/modal/modal.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ModalModule } from './shared/components/modal/modal.module';
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, ModalModule,BrowserAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ModalModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
