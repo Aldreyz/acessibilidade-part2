@@ -1,9 +1,7 @@
-<div class="modal-overday">
-  <div class="modal-content">
-    <h1 class="modal-title">{{config.title}}</h1>
+<div class="modal-overday" (click)="modalRef.close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h1 class="modal-title">{{ config.title }}</h1>
     <!--conteudo modal-->
-    <ng-container *ngTemplateOutlet="config.templateRef" >
-
-    </ng-container>
+    <ng-container *ngTemplateOutlet="config.templateRef"> </ng-container>
   </div>
 </div>
